@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title>PRAVIDHI | Nepali Calendar Utilities</title>
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
 <div class="container">
@@ -13,7 +13,7 @@
         <a class="navbar-brand">PRAVIDHI | Nepali Calendar Utilities</a>
         <span class="text-right">www.pravidhi.com</span>
     </nav>
-    <div class="jumbotron jumbotron-fluid text-center">
+    <div class="jumbotron jumbotron-fluid text-center" style="margin-bottom:0;">
         <h1>Date Converter</h1>
         <p>English to Nepali Date Converter</p>
         <form action="#" method="post" th:action="@{/}">
@@ -50,6 +50,7 @@
         </div>
         <p th:if="${adDate}"><span th:text="${adDate}"></span> A.D.</p>
     </div>
+    <footer class="text-center bg-light">&copy; 2020, PRAVIDHI</footer>
 </div>
 <script th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}" type="text/javascript"></script>
 </body>
