@@ -5,6 +5,8 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <title>PRAVIDHI | Nepali Calendar Utilities</title>
     <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
 </head>
 <body>
@@ -13,42 +15,66 @@
         <a class="navbar-brand">PRAVIDHI | Nepali Calendar Utilities</a>
         <span class="text-right">www.pravidhi.com</span>
     </nav>
-    <div class="jumbotron jumbotron-fluid text-center" style="margin-bottom:0;">
-        <h1>Date Converter</h1>
-        <p>English to Nepali Date Converter</p>
-        <form action="#" method="post" th:action="@{/}">
-            <div class="form-row">
-                <div class="form-group col-md-2 offset-md-3">
-                    <select class="form-control" id="year" th:name="year">
-                        <option value="">Year</option>
-                        <option th:each="year : ${years}" th:text="${year}" th:value="${year}"></option>
-                    </select>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#date-converter">Date Converter</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#date-time">Date & Time</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#date-compare">Date Compare</a>
+        </li>
+    </ul>
+
+    <div class="jumbotron jumbotron-fluid text-center" style="margin-bottom: 0;">
+        <div class="tab-content">
+            <div class="tab-pane container active" id="date-converter">
+                <h1>Date Converter</h1>
+                <p>English to Nepali Date Converter</p>
+                <form action="#" method="post" th:action="@{/}">
+                    <div class="form-row">
+                        <div class="form-group col-md-2 offset-md-3">
+                            <select class="form-control" id="year" th:name="year">
+                                <option value="">Year</option>
+                                <option th:each="year : ${years}" th:text="${year}" th:value="${year}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select class="form-control" id="month" th:name="month">
+                                <option value="">Month</option>
+                                <option th:each="month : ${months}" th:text="${month}" th:value="${month}"></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <select class="form-control" id="day" th:name="day">
+                                <option value="">Day</option>
+                                <option th:each="day : ${days}" th:text="${day}" th:value="${day}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" name="submit" type="submit">Convert</button>
+                    </div>
+                </form>
+                <br>
+                <hr>
+                <br>
+                <h3 th:text="${bs}">Converted Nepali Date</h3>
+                <div class="col-md-6 offset-md-3" role="alert" th:if="${errorMessage}">
+                    <p class="alert alert-danger" th:text="${errorMessage}">Error Message</p>
                 </div>
-                <div class="form-group col-md-2">
-                    <select class="form-control" id="month" th:name="month">
-                        <option value="">Month</option>
-                        <option th:each="month : ${months}" th:text="${month}" th:value="${month}"></option>
-                    </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <select class="form-control" id="day" th:name="day">
-                        <option value="">Day</option>
-                        <option th:each="day : ${days}" th:text="${day}" th:value="${day}"></option>
-                    </select>
-                </div>
+                <p th:if="${adDate}"><span th:text="${adDate}"></span> A.D.</p>
             </div>
-            <div class="text-center">
-                <button class="btn btn-primary" name="submit" type="submit">Convert</button>
+            <div class="tab-pane container fade" id="date-time">
+                <h1>Date & Time</h1>
+                <p>BS Nepali Date</p>
             </div>
-        </form>
-        <br>
-        <hr>
-        <br>
-        <h3 th:text="${bs}">Converted Nepali Date</h3>
-        <div class="col-md-6 offset-md-3" th:if="${errorMessage}" role="alert">
-            <p class="alert alert-danger" th:text="${errorMessage}">Error Message</p>
+            <div class="tab-pane container fade" id="date-compare">
+                <h1>Date Compare</h1>
+                <p>Compare two Nepali Dates</p>
+            </div>
         </div>
-        <p th:if="${adDate}"><span th:text="${adDate}"></span> A.D.</p>
     </div>
     <footer class="text-center bg-light">&copy; 2020, PRAVIDHI</footer>
 </div>
